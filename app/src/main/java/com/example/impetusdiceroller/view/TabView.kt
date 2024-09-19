@@ -27,7 +27,7 @@ fun TabView(tabBarItems: List<TabBarItem>, navController: NavController) {
                 selected = selectedTabIndex == index,
                 onClick = {
                     selectedTabIndex = index
-                    navController.navigate(tabBarItem.title)
+                    navController.navigate(tabBarItem.screenType.title)
                 },
                 icon = {
                     Icon(
@@ -36,11 +36,11 @@ fun TabView(tabBarItems: List<TabBarItem>, navController: NavController) {
                         } else {
                             tabBarItem.unselectedIcon
                         },
-                        contentDescription = tabBarItem.title,
-                        modifier = Modifier.size(20.dp)
+                        contentDescription = tabBarItem.screenType.title,
+                        modifier = Modifier.size(25.dp)
                     )
                 },
-                label = { Text(tabBarItem.title) })
+                label = { Text(tabBarItem.screenType.title) })
         }
     }
 }
