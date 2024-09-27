@@ -9,6 +9,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -16,13 +17,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.impetusdiceroller.model.ScreenType
 import com.example.impetusdiceroller.model.TabBarItem
 import com.example.impetusdiceroller.ui.theme.ImpetusDiceRollerTheme
-import com.example.impetusdiceroller.view.DisciplineScreen
+import com.example.impetusdiceroller.view.discipline.DisciplineScreen
 import com.example.impetusdiceroller.view.InitiativeScreen
 import com.example.impetusdiceroller.view.MeleeScreen
 import com.example.impetusdiceroller.view.RangeScreen
@@ -51,7 +53,13 @@ fun ImpetusDiceRollerApp() {
     val navController = rememberNavController()
     val bottomBarTabs = createBottomBarTabs()
     Scaffold(bottomBar = { TabView(bottomBarTabs, navController) }) {
-        NavHost(navController = navController, startDestination = bottomBarTabs.first().screenType.title) {
+        NavHost(
+            navController = navController,
+            startDestination = bottomBarTabs.first().screenType.title,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 16.dp, start = 16.dp, end = 16.dp, bottom = 80.dp,)
+        ) {
             bottomBarTabs.map { (screenType) ->
                 composable(screenType.title) {
                     when (screenType) {
